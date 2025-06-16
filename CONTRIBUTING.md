@@ -1,6 +1,6 @@
 # Contributing to pycleancode
 
-Thank you for considering contributing to `pycleancode`!  
+Thank you for considering contributing to `pycleancode`!
 This project follows strict OSS engineering and clean code principles to ensure long-term scalability, maintainability, and correctness.
 
 ---

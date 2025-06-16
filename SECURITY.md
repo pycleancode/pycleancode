@@ -15,7 +15,7 @@ If you discover a security vulnerability or suspect any unsafe behavior in `pycl
 
 Instead, report it **privately and responsibly**:
 
-- Email: security@pycleancode.com 
+- Email: security@pycleancode.com
 
 We take all vulnerability reports seriously and will respond promptly.
 

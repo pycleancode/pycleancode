@@ -18,7 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - ✅ Added Nested Function Rule (function-in-function depth control).
 - ✅ Full configuration via `pybrace.yml` for rule thresholds.
 - ✅ Fully functional CLI powered by Typer with entry point: `pycleancode-brace-linter`.
-- ✅ Advanced visual reporting: 
+- ✅ Advanced visual reporting:
   - Emoji-based tree rendering
   - ASCII structure output
   - Summary charts for quick glance depth reports.
