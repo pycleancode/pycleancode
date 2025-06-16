@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+
+# Poetry / Virtualenv
+.mypy_cache/
+.poetry/
+.pytest_cache/
+.venv/
+.env
+.envrc
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs / Dumps
+*.log
+*.coverage
+*.cover
+
+# Pre-commit artifacts
+.pre-commit-config.yaml~
+.pre-commit/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Sandbox / local experiments
+sandbox/
+devtest.py
+
+# YAML configs that may be user-specific
+pybrace.yml
+
+# Package lock files (auto-generated, don't commit unless pinned intentionally)
+poetry.lock
+
+# Sphinx / mkdocs / docs build
+docs/_build/
+site/
