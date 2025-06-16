@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pycleancode"
-version = "1.0.0"
+version = "0.1.2"
 description = "Pycleancode Python toolkit to help developers write professional-grade, maintainable, and clean code following clean code principles"
 authors = ["Pycleancode <admin@pycleancode.com>"]
 license = "MIT"
