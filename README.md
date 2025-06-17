@@ -1,3 +1,4 @@
+![pycleancode logo](assets/readme/pycleancode-logo.png)
 # Pycleancode: Professional Python Clean Code Toolkit
 
 > **A Python toolkit to help developers write professional-grade, maintainable, and clean code following clean code principles.**
@@ -74,6 +75,11 @@ sandbox/test_sample.py:3: Depth 4 exceeds max 3
 ```
 
 ---
+
+## 🛡 Python Compatibility
+
+- ✅ Supported Python versions: 3.8, 3.9, 3.10, 3.11, 3.12
+- ⚠ Python 3.13+ is not yet supported (due to upstream Rust dependencies)
 
 ## 🌐 Installation
 
