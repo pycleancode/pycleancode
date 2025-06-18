@@ -2,7 +2,7 @@ import os
 import tempfile
 import pytest
 import yaml
-from core.config import ConfigLoader
+from pycleancode.core.config import ConfigLoader
 
 
 @pytest.fixture

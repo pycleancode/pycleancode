@@ -14,7 +14,7 @@ from pycleancode.brace_linter.reports.structure_reporter import StructureReporte
 from pycleancode.brace_linter.reports.console_reporter import ConsoleReporter
 from pycleancode.brace_linter.reports.summary_report import SummaryReporter
 from pycleancode.brace_linter.reports.depth_chart_reporter import DepthChartReporter
-from core.config import ConfigLoader
+from pycleancode.core.config import ConfigLoader
 from typing import List
 from pycleancode.brace_linter.vbtree.vbt_model import VBTNode
 from pycleancode.brace_linter.rules.violation_model import RuleViolation
