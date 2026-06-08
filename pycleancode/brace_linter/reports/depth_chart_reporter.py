@@ -5,6 +5,7 @@ Prints a simple depth chart for source file analysis.
 """
 
 from rich import print
+from pycleancode.utils.console import sanitize_console_text
 
 
 class DepthChartReporter:
@@ -21,7 +22,8 @@ class DepthChartReporter:
             max_depth (int): Maximum depth found.
         """
         chart = self._generate_bar(max_depth)
-        print(f"{file_path} | Max Depth: {max_depth} | {chart}")
+        safe_file_path = sanitize_console_text(file_path)
+        print(f"{safe_file_path} | Max Depth: {max_depth} | {chart}")
 
     def _generate_bar(self, depth: int) -> str:
         """

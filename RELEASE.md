@@ -32,6 +32,12 @@ Before publishing a release:
   ```bash
   poetry run pre-commit run --all-files
   ```
+* [ ] Security checks pass:
+
+  ```bash
+  poetry run pip-audit
+  poetry run bandit -r pycleancode
+  ```
 * [ ] All CI pipelines (GitHub Actions) pass.
 * [ ] Dependencies fully frozen via `poetry.lock`:
 

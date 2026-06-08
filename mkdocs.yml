@@ -1,0 +1,8 @@
+site_name: pycleancode
+site_description: Professional Python clean code toolkit documentation.
+repo_url: https://github.com/pycleancode/pycleancode
+theme:
+  name: material
+
+nav:
+  - Home: index.md

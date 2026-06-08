@@ -18,6 +18,7 @@ from pycleancode.core.config import ConfigLoader
 from typing import List
 from pycleancode.brace_linter.vbtree.vbt_model import VBTNode
 from pycleancode.brace_linter.rules.violation_model import RuleViolation
+from pycleancode.utils.console import sanitize_console_text
 
 
 class BraceLinterAnalyzer:
@@ -31,14 +32,15 @@ class BraceLinterAnalyzer:
         rules = RuleLoader(config).load_rules()
 
         for file_path, file_content in files.items():
-            print(f"\n🔎 Analyzing: {file_path}")
+            safe_file_path = sanitize_console_text(file_path)
+            print(f"\n🔎 Analyzing: {safe_file_path}")
             vbt_root: VBTNode = self._parse_to_vbt(file_content)
             violations = RuleEngine(rules).run(vbt_root, file_path)
 
             self._print_violations(violations)
 
             if report:
-                self._generate_report(file_path, vbt_root, violations)
+                self._generate_report(safe_file_path, vbt_root, violations)
 
     def _parse_to_vbt(self, file_content: str) -> VBTNode:
         tree = cst.parse_module(file_content)
@@ -48,7 +50,8 @@ class BraceLinterAnalyzer:
 
     def _print_violations(self, violations: List[RuleViolation]) -> None:
         for violation in violations:
-            print(f"{violation.file_path}:{violation.line_number}: {violation.message}")
+            safe_file_path = sanitize_console_text(violation.file_path)
+            print(f"{safe_file_path}:{violation.line_number}: {violation.message}")
 
     def _generate_report(
         self, file_path: str, vbt_root: VBTNode, violations: list[RuleViolation]
