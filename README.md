@@ -12,7 +12,6 @@
 [![Build Docs](https://github.com/pycleancode/pycleancode/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/pycleancode/pycleancode/actions/workflows/docs.yml)
 [![Security Scan](https://github.com/pycleancode/pycleancode/actions/workflows/security-scan.yml/badge.svg)](https://github.com/pycleancode/pycleancode/actions/workflows/security-scan.yml)
 [![Release](https://github.com/pycleancode/pycleancode/actions/workflows/workflow.yml/badge.svg)](https://github.com/pycleancode/pycleancode/actions/workflows/workflow.yml)
-[![Coverage](https://codecov.io/gh/pycleancode/pycleancode/branch/main/graph/badge.svg)](https://codecov.io/gh/pycleancode/pycleancode)
 
 [![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Linting: Ruff](https://img.shields.io/badge/linting-ruff-46A4A4.svg)](https://docs.astral.sh/ruff/)
