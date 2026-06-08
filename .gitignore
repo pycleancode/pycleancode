@@ -42,9 +42,6 @@ devtest.py
 # YAML configs that may be user-specific
 pybrace.yml
 
-# Package lock files (auto-generated, don't commit unless pinned intentionally)
-poetry.lock
-
 # Sphinx / mkdocs / docs build
 docs/_build/
 site/

@@ -19,6 +19,13 @@ Instead, report it **privately and responsibly**:
 
 We take all vulnerability reports seriously and will respond promptly.
 
+## Automated Security Checks
+
+The repository runs scheduled dependency and static analysis checks:
+
+- `poetry run pip-audit`
+- `poetry run bandit -r pycleancode`
+
 ## Responsible Disclosure Timeline
 
 - We will confirm receipt within 72 hours.

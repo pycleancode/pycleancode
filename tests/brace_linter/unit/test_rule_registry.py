@@ -29,8 +29,7 @@ def temp_rule_package() -> Generator[Path, None, None]:
     rule_file_path = rules_dir / "dummy_rule.py"
 
     # Write fake rule file
-    rule_file_path.write_text(
-        """
+    rule_file_path.write_text("""
 from pycleancode.brace_linter.rules.rule_base import RuleBase
 from pycleancode.brace_linter.vbtree.vbt_model import VBTNode
 from pycleancode.brace_linter.rules.violation_model import RuleViolation
@@ -44,8 +43,7 @@ class DummyRule(RuleBase):
     def run(self, vbt_root: VBTNode, file_path: str) -> List[RuleViolation]:
         _ = vbt_root
         return []
-"""
-    )
+""")
 
     yield rules_dir
 

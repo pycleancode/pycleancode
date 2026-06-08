@@ -34,9 +34,9 @@ While tools like `flake8`, `pylint`, `ruff`, and `black` are excellent, most foc
 
 ---
 
-## 🔄 Current Release - v1.0.3
+## 🔄 Current Release - v1.0.4
 
-**pycleancode 1.0.3** includes the first module: `brace_linter` and a trust-repair fix for YAML rule thresholds.
+**pycleancode 1.0.4** includes the first module: `brace_linter`, YAML threshold fixes, and security hardening for dependencies, CI, and console output.
 
 ### Brace Linter
 
@@ -188,7 +188,7 @@ We welcome OSS contributions. Please read our full [CONTRIBUTING.md](CONTRIBUTIN
 
 * GitHub Discussions (coming soon)
 * Issues and PRs welcomed
-* PyPI release v1.0.3 planned as a trust-repair release
+* PyPI release v1.0.4 planned as a security-hardening release
 
 ---
 

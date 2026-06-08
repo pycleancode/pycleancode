@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pycleancode"
-version = "1.0.3"
+version = "1.0.4"
 description = "Pycleancode Python toolkit to help developers write professional-grade, maintainable, and clean code following clean code principles"
 authors = ["Pycleancode <admin@pycleancode.com>"]
 license = "MIT"
@@ -23,21 +23,24 @@ typing-inspect = "0.9.0"
 annotated-types = ">=0.4.0"
 mypy-extensions = ">=0.3.0"
 markdown-it-py = ">=2.2.0"
-pygments = ">=2.13.0,<3.0.0"
+pygments = ">=2.20.0,<3.0.0"
 mdurl = "~0.1"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "8.2.1"
+pytest = { version = ">=9.0.3,<10.0.0", python = ">=3.10,<3.13" }
 ruff = "0.4.1"
-black = "24.4.2"
+black = { version = ">=26.3.1,<27.0.0", python = ">=3.10,<3.13" }
 mypy = "1.10.0"
-pre-commit = "3.7.0"
+pre-commit = { version = "3.7.0", python = ">=3.10,<3.13" }
 isort = "5.13.2"
 types-pyyaml = "^6.0.12.20250516"
-pytest-cov = "^6.2.1"
-pytest-mypy-plugins = "^3.2.0"
+pytest-cov = { version = "^6.2.1", python = ">=3.10,<3.13" }
+pytest-mypy-plugins = { version = "^3.2.0", python = ">=3.10,<3.13" }
 typeguard = "^4.4.3"
-tox = "4.26.0"
+tox = { version = "4.26.0", python = ">=3.10,<3.13" }
+virtualenv = { version = ">=20.36.2,<21.0.0", python = ">=3.10,<3.13" }
+pip-audit = { version = ">=2.9.0,<3.0.0", python = ">=3.10,<3.13" }
+bandit = { version = ">=1.8.6,<2.0.0", python = ">=3.10,<3.13" }
 
 [build-system]
 requires = ["poetry-core"]

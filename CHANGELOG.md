@@ -6,6 +6,19 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.0.4] - 2026-06-08
+
+### Security Hardening
+
+- Raised vulnerable runtime and development dependency constraints.
+- Replaced the scheduled Safety export flow with `pip-audit` and Bandit checks.
+- Pinned GitHub Actions to immutable commit SHAs.
+- Added PyPI release tag validation and an environment gate for trusted publishing.
+- Escaped control characters before writing untrusted paths to the console.
+- Committed a Poetry lockfile for reproducible CI and release installs.
+
+---
+
 ## [1.0.3] - 2026-06-08
 
 ### Trust-Repair Release
