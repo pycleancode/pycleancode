@@ -34,9 +34,9 @@ While tools like `flake8`, `pylint`, `ruff`, and `black` are excellent, most foc
 
 ---
 
-## 🔄 Current Release - v1.0.0
+## 🔄 Current Release - v1.0.3
 
-**pycleancode 1.0.0** includes the first module: `brace_linter`.
+**pycleancode 1.0.3** includes the first module: `brace_linter` and a trust-repair fix for YAML rule thresholds.
 
 ### Brace Linter
 
@@ -78,7 +78,7 @@ sandbox/test_sample.py:3: Depth 4 exceeds max 3
 
 ## 🛡 Python Compatibility
 
-- ✅ Supported Python versions: 3.8, 3.9, 3.10, 3.11, 3.12
+- ✅ Supported Python versions: 3.9, 3.10, 3.11, 3.12
 - ⚠ Python 3.13+ is not yet supported (due to upstream Rust dependencies)
 
 ## 🌐 Installation
@@ -102,7 +102,7 @@ poetry add pycleancode
 Run directly via CLI:
 
 ```bash
-pycleancode-brace-linter path/to/your/code.py --report
+pycleancode-brace-linter path/to/your/code.py --config pybrace.yml --report
 ```
 
 ---
@@ -188,7 +188,7 @@ We welcome OSS contributions. Please read our full [CONTRIBUTING.md](CONTRIBUTIN
 
 * GitHub Discussions (coming soon)
 * Issues and PRs welcomed
-* PyPI release v1.0.0 live
+* PyPI release v1.0.3 planned as a trust-repair release
 
 ---
 

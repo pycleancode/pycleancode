@@ -68,7 +68,11 @@ class RuleLoader:
         Returns:
             RuleBase: The instantiated rule object.
         """
+        rule_params = {
+            key: value for key, value in rule_conf.items() if key != "enabled"
+        }
+
         try:
-            return rule_cls(**rule_conf)
+            return rule_cls(**rule_params)
         except TypeError:
             return rule_cls()

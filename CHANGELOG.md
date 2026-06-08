@@ -6,6 +6,17 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.0.3] - 2026-06-08
+
+### Trust-Repair Release
+
+- Fixed rule loading so YAML thresholds are passed to enabled rule constructors.
+- Preserved strict config loading behavior with passing regression coverage.
+- Aligned README release metadata with package behavior and Python version support.
+- Added regression coverage proving `max_depth` configuration changes rule output.
+
+---
+
 ## [1.0.0] - 2025-06-16
 
 ### 🚀 First Official OSS Release — pycleancode
