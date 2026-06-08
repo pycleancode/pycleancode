@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - Pinned GitHub Actions to immutable commit SHAs.
 - Added PyPI release tag validation and an environment gate for trusted publishing.
 - Escaped control characters before writing untrusted paths to the console.
+- Added a minimal MkDocs configuration so the documentation workflow has a real site to build.
 - Committed a Poetry lockfile for reproducible CI and release installs.
 
 ---
