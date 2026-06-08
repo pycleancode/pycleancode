@@ -188,7 +188,7 @@ We welcome OSS contributions. Please read our full [CONTRIBUTING.md](CONTRIBUTIN
 
 * GitHub Discussions (coming soon)
 * Issues and PRs welcomed
-* PyPI release v1.0.4 planned as a security-hardening release
+* PyPI release v1.0.4 is available as a security-hardening release
 
 ---
 
