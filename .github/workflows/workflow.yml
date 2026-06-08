@@ -4,9 +4,20 @@ on:
   push:
     tags:
       - 'v*.*.*'  # Trigger when version tags are pushed
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing release tag to backfill, for example v1.0.4'
+        required: true
+        type: string
+      publish_to_pypi:
+        description: 'Publish the built package to PyPI'
+        required: true
+        default: false
+        type: boolean
 
 concurrency:
-  group: release-${{ github.ref }}
+  group: release-${{ inputs.tag || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -15,12 +26,17 @@ jobs:
     environment: pypi
 
     permissions:
-      contents: read
+      contents: write  # Required to create/update GitHub Releases
       id-token: write  # Required for trusted PyPI publishing
+
+    env:
+      RELEASE_TAG: ${{ inputs.tag || github.ref_name }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
 
       - name: Set up Python
         uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
@@ -33,8 +49,8 @@ jobs:
       - name: Validate release tag
         run: |
           VERSION="$(poetry version -s)"
-          if [ "${GITHUB_REF_NAME}" != "v${VERSION}" ]; then
-            echo "Tag ${GITHUB_REF_NAME} does not match pyproject version ${VERSION}"
+          if [ "${RELEASE_TAG}" != "v${VERSION}" ]; then
+            echo "Tag ${RELEASE_TAG} does not match pyproject version ${VERSION}"
             exit 1
           fi
 
@@ -45,4 +61,18 @@ jobs:
         run: poetry build
 
       - name: Publish to PyPI
+        if: ${{ github.event_name == 'push' || inputs.publish_to_pypi }}
         uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b # release/v1
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${RELEASE_TAG}" --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            gh release upload "${RELEASE_TAG}" dist/* --repo "${GITHUB_REPOSITORY}" --clobber
+          else
+            gh release create "${RELEASE_TAG}" dist/* \
+              --repo "${GITHUB_REPOSITORY}" \
+              --title "pycleancode ${RELEASE_TAG}" \
+              --generate-notes
+          fi
