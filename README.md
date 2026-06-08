@@ -4,9 +4,19 @@
 > **A Python toolkit to help developers write professional-grade, maintainable, and clean code following clean code principles.**
 
 [![PyPI version](https://img.shields.io/pypi/v/pycleancode)](https://pypi.org/project/pycleancode/)
-[![CI](https://github.com/pycleancode/pycleancode/actions/workflows/ci.yml/badge.svg)](https://github.com/pycleancode/pycleancode/actions)
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)]()
+[![Python versions](https://img.shields.io/pypi/pyversions/pycleancode)](https://pypi.org/project/pycleancode/)
+[![Wheel](https://img.shields.io/pypi/wheel/pycleancode)](https://pypi.org/project/pycleancode/)
 [![License](https://img.shields.io/github/license/pycleancode/pycleancode)](LICENSE)
+
+[![CI](https://github.com/pycleancode/pycleancode/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pycleancode/pycleancode/actions/workflows/ci.yml)
+[![Build Docs](https://github.com/pycleancode/pycleancode/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/pycleancode/pycleancode/actions/workflows/docs.yml)
+[![Security Scan](https://github.com/pycleancode/pycleancode/actions/workflows/security-scan.yml/badge.svg)](https://github.com/pycleancode/pycleancode/actions/workflows/security-scan.yml)
+[![Release](https://github.com/pycleancode/pycleancode/actions/workflows/workflow.yml/badge.svg)](https://github.com/pycleancode/pycleancode/actions/workflows/workflow.yml)
+[![Coverage](https://codecov.io/gh/pycleancode/pycleancode/branch/main/graph/badge.svg)](https://codecov.io/gh/pycleancode/pycleancode)
+
+[![Code style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Linting: Ruff](https://img.shields.io/badge/linting-ruff-46A4A4.svg)](https://docs.astral.sh/ruff/)
+[![Type checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy-lang.org/)
 
 ---
 
@@ -188,7 +198,7 @@ We welcome OSS contributions. Please read our full [CONTRIBUTING.md](CONTRIBUTIN
 
 * GitHub Discussions (coming soon)
 * Issues and PRs welcomed
-* PyPI release v1.0.4 planned as a security-hardening release
+* PyPI release v1.0.4 is available as a security-hardening release
 
 ---
 

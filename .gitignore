@@ -26,6 +26,7 @@ dist/
 *.log
 *.coverage
 *.cover
+coverage.xml
 
 # Pre-commit artifacts
 .pre-commit-config.yaml~

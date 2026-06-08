@@ -66,18 +66,28 @@ Before publishing a release:
 
 ---
 
-## ✅ Release Automation (Planned)
+## ✅ Release Automation
 
-In future versions:
+The `Release` GitHub Actions workflow runs on version tags matching `v*.*.*`.
+It validates that the tag matches the version in `pyproject.toml`, builds the
+package, publishes to PyPI through trusted publishing, and creates or updates
+the matching GitHub Release with built `dist/*` assets.
 
-* Full **semantic-release** automation pipelines will handle:
+To publish a new release:
 
-  * Automated version bumping.
-  * Automated changelog generation.
-  * Automated PyPI publishing.
-  * Automated GitHub Releases.
-* Auto-triggered on `main` protected branch merges.
-* Safe for external OSS contributor PRs.
+```bash
+git tag vX.Y.Z
+git push origin vX.Y.Z
+```
+
+To backfill a GitHub Release for an existing tag without republishing to PyPI,
+run the `Release` workflow manually with:
+
+* `tag`: existing tag, for example `v1.0.4`
+* `publish_to_pypi`: `false`
+
+Version bumps, changelog generation, and release-note copy are still maintained
+manually.
 
 ---
 
