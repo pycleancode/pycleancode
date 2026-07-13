@@ -1,4 +1,5 @@
 from pycleancode.brace_linter.rules.loader import RuleLoader
+from pycleancode.brace_linter.rules.max_depth_rule import MaxDepthRule
 
 
 def _config(severity_value: str) -> dict:
@@ -21,6 +22,7 @@ def test_severity_key_not_passed_to_constructor() -> None:
     rules = loader.load_rules()
     max_depth_rule = next(r for r in rules if r.name == "max_depth")
     # threshold must survive: severity/enabled were stripped, max_depth passed through
+    assert isinstance(max_depth_rule, MaxDepthRule)
     assert max_depth_rule._max_depth == 2
 
 

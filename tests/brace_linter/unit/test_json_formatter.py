@@ -3,10 +3,10 @@ import json
 from pycleancode.brace_linter.models import AnalysisRun, FileResult
 from pycleancode.brace_linter.output.json_formatter import JsonFormatter
 from pycleancode.brace_linter.reports.models import FileSummary
-from pycleancode.brace_linter.rules.violation_model import RuleViolation
+from pycleancode.brace_linter.rules.violation_model import RuleViolation, Severity
 
 
-def _result(file_path: str, line: int, severity: str) -> FileResult:
+def _result(file_path: str, line: int, severity: Severity) -> FileResult:
     violation = RuleViolation(
         file_path=file_path,
         line_number=line,

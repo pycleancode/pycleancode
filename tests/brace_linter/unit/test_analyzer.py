@@ -10,15 +10,13 @@ CONFIG = {
     }
 }
 
-NESTED_SOURCE = textwrap.dedent(
-    """
+NESTED_SOURCE = textwrap.dedent("""
     def outer():
         def inner():
             def too_deep():
                 def more():
                     pass
-    """
-)
+    """)
 
 
 def _write(tmp_path, name, content):
