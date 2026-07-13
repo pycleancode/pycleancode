@@ -1,20 +1,29 @@
 """
 Module: cli
 
-Command-line entry point for pycleancode.
+Deprecated `pycleancode-brace-linter` entry point. Forwards to the
+unified `pycleancode check` implementation.
 """
 
-import typer
-from pycleancode.brace_linter.analyzer import BraceLinterAnalyzer
+from typing import Optional
 
-app = typer.Typer(help="PyCleanCode: Analyze Python code structure and brace depth.")
+import typer
+
+from pycleancode.cli import run_check
+
+app = typer.Typer(help="[Deprecated] Use `pycleancode check` instead.")
+
+_DEPRECATION_NOTICE = (
+    "warning: `pycleancode-brace-linter` is deprecated and will be removed "
+    "in 2.0; use `pycleancode check` instead."
+)
 
 
 @app.command()
 def analyze(
     path: str = typer.Argument(..., help="Path to file or directory to analyze."),
-    config: str = typer.Option(
-        "pybrace.yml", "--config", "-c", help="Path to config file."
+    config: Optional[str] = typer.Option(
+        None, "--config", "-c", help="Path to config file."
     ),
     report: bool = typer.Option(
         False, "--report", "-r", help="Generate structural reports."
@@ -23,8 +32,16 @@ def analyze(
     """
     Analyze the given path using pycleancode brace linter.
     """
-    analyzer = BraceLinterAnalyzer()
-    analyzer.analyze(path, config, report)
+    typer.echo(_DEPRECATION_NOTICE, err=True)
+    raise typer.Exit(
+        run_check(
+            path=path,
+            config=config,
+            output_format="text",
+            output=None,
+            report=report,
+        )
+    )
 
 
 def main() -> None:
