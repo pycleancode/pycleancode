@@ -43,9 +43,17 @@ While tools like `flake8`, `pylint`, `ruff`, and `black` are excellent, most foc
 
 ---
 
-## 🔄 Current Release - v1.0.4
+## 🔄 Current Release - v1.1.0
 
-**pycleancode 1.0.4** includes the first module: `brace_linter`, YAML threshold fixes, and security hardening for dependencies, CI, and console output.
+**pycleancode 1.1.0** — "Output teams can use" — adds a unified `pycleancode check` CLI, JSON and Markdown reports, severity-aware exit codes for CI, and `pyproject.toml` configuration on top of the `brace_linter` module.
+
+### New in 1.1.0
+
+* **Unified CLI** — `pycleancode check <path>` replaces `pycleancode-brace-linter` (the old command still works and prints a deprecation notice; removal planned for 2.0).
+* **Report formats** — `--format text|json|markdown` with optional `--output <file>`. JSON carries a stable `schemaVersion: 1` for CI integrations; Markdown is ready to paste into a pull request.
+* **Exit codes for CI** — `0` clean or warnings-only, `1` error violations, `2` usage/config/parse failure. Builds can finally fail on maintainability regressions.
+* **Per-rule severity** — set `severity: warning` on a rule to report without failing the build, then tighten to `error` when the team is ready.
+* **Layered configuration** — `--config <path>` → `./pybrace.yml` → `[tool.pycleancode]` in `pyproject.toml` → built-in defaults. Fresh installs run with zero setup.
 
 ### Brace Linter
 
@@ -111,14 +119,27 @@ poetry add pycleancode
 Run directly via CLI:
 
 ```bash
-pycleancode-brace-linter path/to/your/code.py --config pybrace.yml --report
+pycleancode check path/to/your/code.py --report
 ```
+
+Generate machine-readable or review-friendly reports:
+
+```bash
+pycleancode check src --format json --output report.json
+pycleancode check src --format markdown --output report.md
+```
+
+Exit codes: `0` = clean or warnings-only · `1` = error-severity violations · `2` = usage/config/parse failure.
+
+> The legacy `pycleancode-brace-linter` command still works with its original arguments and prints a deprecation notice. Migrate scripts to `pycleancode check`.
 
 ---
 
 ## 🏓 Configuration
 
-Configure via `pybrace.yml`:
+Configuration is discovered in this order: `--config <path>` → `./pybrace.yml` → `[tool.pycleancode]` in `pyproject.toml` → built-in defaults.
+
+Via `pybrace.yml`:
 
 ```yaml
 rules:
@@ -128,13 +149,23 @@ rules:
   nested_function:
     enabled: true
     max_nested: 1
+    severity: warning   # report, but do not fail the build
 ```
 
-Pass config via CLI:
+Or via `pyproject.toml`:
 
-```bash
-pycleancode-brace-linter your_code.py --config pybrace.yml
+```toml
+[tool.pycleancode.rules.max_depth]
+enabled = true
+max_depth = 3
+
+[tool.pycleancode.rules.nested_function]
+enabled = true
+max_nested = 1
+severity = "warning"
 ```
+
+Each rule accepts `enabled`, its thresholds, and an optional `severity` (`error` by default, `warning` to report without failing CI).
 
 ---
 
@@ -163,10 +194,14 @@ poetry run pre-commit run --all-files
 
 ## 📖 Roadmap
 
-| Module                  | Description                                    | Status      |
-| ----------------------- | ---------------------------------------------- | ----------- |
-| `brace_linter`          | Structural depth analysis (nesting, functions) | ✅ Completed |
-| Full documentation site | OSS-grade docs & API reference                 | ⏳ Planned   |
+| Module / Feature         | Description                                        | Status      |
+| ------------------------ | -------------------------------------------------- | ----------- |
+| `brace_linter`           | Structural depth analysis (nesting, functions)     | ✅ Completed |
+| Team-usable output       | JSON/Markdown reports, exit codes, pyproject config | ✅ v1.1.0   |
+| Regression diff mode     | `diff --base main`: fail CI only on regressions     | ⏳ Planned (v1.2) |
+| Baseline & ratchet       | Adopt on legacy codebases without fixing old debt   | ⏳ Planned (v1.3) |
+| GitHub Action            | PR comments, status checks, annotations             | ⏳ Planned (v1.4) |
+| Full documentation site  | OSS-grade docs & API reference                      | ✅ Live      |
 
 ---
 
@@ -197,7 +232,7 @@ We welcome OSS contributions. Please read our full [CONTRIBUTING.md](CONTRIBUTIN
 
 * GitHub Discussions (coming soon)
 * Issues and PRs welcomed
-* PyPI release v1.0.4 is available as a security-hardening release
+* PyPI release v1.1.0 adds team-usable output: reports, exit codes, and pyproject configuration
 
 ---
 
