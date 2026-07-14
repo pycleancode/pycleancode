@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pycleancode"
-version = "1.0.4"
+version = "1.1.0"
 description = "Pycleancode Python toolkit to help developers write professional-grade, maintainable, and clean code following clean code principles"
 authors = ["Pycleancode <admin@pycleancode.com>"]
 license = "MIT"
@@ -25,6 +25,7 @@ mypy-extensions = ">=0.3.0"
 markdown-it-py = ">=2.2.0"
 pygments = ">=2.20.0,<3.0.0"
 mdurl = "~0.1"
+tomli = { version = ">=2.0.1,<3.0", python = "<3.11" }
 
 [tool.poetry.group.dev.dependencies]
 pytest = { version = ">=9.0.3,<10.0.0", python = ">=3.10,<3.13" }
@@ -47,6 +48,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
+pycleancode = "pycleancode.cli:app"
 pycleancode-brace-linter = "pycleancode.brace_linter.cli:app"
 
 [tool.black]

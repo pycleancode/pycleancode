@@ -4,7 +4,10 @@ Module: console_reporter
 Prints NodeReport tree structures to console using Rich.
 """
 
-from rich import print
+from typing import Optional
+
+from rich.console import Console
+
 from pycleancode.brace_linter.reports.models import NodeReport
 
 
@@ -12,6 +15,16 @@ class ConsoleReporter:
     """
     ConsoleReporter prints NodeReport trees with icons and colors.
     """
+
+    def __init__(self, console: Optional[Console] = None) -> None:
+        """
+        Initialize ConsoleReporter.
+
+        Args:
+            console (Optional[Console]): Rich console to print to.
+                Defaults to a stdout console.
+        """
+        self._console = console or Console()
 
     def print_tree(self, report: NodeReport, prefix: str = "") -> None:
         """
@@ -31,7 +44,7 @@ class ConsoleReporter:
         icon = self._get_icon(report.node_type)
         color = self._get_color(report.depth)
         connector = prefix[:-2].replace(" ", "│ ") + ("├─" if prefix else "")
-        print(
+        self._console.print(
             f"[{color}]{connector} {icon} {report.node_type} (Line {report.start_line}, Depth {report.depth})[/{color}]"
         )
 

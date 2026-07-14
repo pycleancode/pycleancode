@@ -1,3 +1,4 @@
+import json
 import subprocess
 import pytest
 
@@ -46,10 +47,30 @@ def test_cli_pipeline_runs(sample_python_file, sample_config_file):
 
     result = subprocess.run(cmd, capture_output=True, text=True)
 
-    # Check exit code
-    assert result.returncode == 0
-
-    # Check expected violation keywords in output
+    # Violations are error-severity by default -> exit 1 under the 1.1.0 contract
+    assert result.returncode == 1
+    assert "deprecated" in result.stderr
     assert "Nested functions depth" in result.stdout
     assert "Depth" in result.stdout
     assert "Max Depth" in result.stdout
+
+
+def test_new_cli_pipeline_runs(sample_python_file, sample_config_file):
+    cmd = [
+        "poetry",
+        "run",
+        "pycleancode",
+        "check",
+        str(sample_python_file),
+        "--config",
+        str(sample_config_file),
+        "--format",
+        "json",
+    ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+
+    assert result.returncode == 1
+    payload = json.loads(result.stdout)
+    assert payload["schemaVersion"] == 1
+    assert payload["summary"]["errors"] > 0

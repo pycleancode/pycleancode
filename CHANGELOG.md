@@ -6,6 +6,23 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ---
 
+## [1.1.0] - 2026-07-13
+
+### Output Teams Can Use
+
+- Added the unified `pycleancode` CLI with a `check` subcommand: `pycleancode check src --format json --output report.json`.
+- Deprecated `pycleancode-brace-linter`. It keeps working with its existing arguments, prints a one-line notice on stderr, and is planned for removal in 2.0.
+- Added JSON output (`--format json`, stable `schemaVersion: 1` with per-file summaries) and Markdown output (`--format markdown`) suitable for pull-request summaries; both support `--output <file>`.
+- Added severity-aware exit codes: `0` clean or warnings-only, `1` at least one error-severity violation, `2` usage/config/parse/write failure.
+- Added per-rule `severity: error | warning` configuration so teams can adopt rules without failing builds, then tighten over time.
+- Added layered configuration discovery: `--config <path>`, then `./pybrace.yml`, then `[tool.pycleancode]` in `./pyproject.toml`, then built-in defaults. Running without any config file now works instead of crashing.
+- Added configuration validation with clear errors for invalid severity values, non-integer thresholds, non-boolean `enabled`, and malformed TOML.
+- Restructured the analyzer to return structured results (`AnalysisRun`) with rendering moved to a dedicated formatter layer; unparseable files are reported and no longer abort the run.
+- Removed the unused `ParserEngine` and legacy `reporter` package; rule-registry tests no longer write into the production package.
+- Added `tomli` as a dependency for Python 3.9/3.10 (`tomllib` is used on 3.11+).
+
+---
+
 ## [1.0.4] - 2026-06-08
 
 ### Security Hardening

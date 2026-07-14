@@ -4,7 +4,10 @@ Module: depth_chart_reporter
 Prints a simple depth chart for source file analysis.
 """
 
-from rich import print
+from typing import Optional
+
+from rich.console import Console
+
 from pycleancode.utils.console import sanitize_console_text
 
 
@@ -12,6 +15,16 @@ class DepthChartReporter:
     """
     DepthChartReporter prints max depth analysis using a simple bar chart.
     """
+
+    def __init__(self, console: Optional[Console] = None) -> None:
+        """
+        Initialize DepthChartReporter.
+
+        Args:
+            console (Optional[Console]): Rich console to print to.
+                Defaults to a stdout console.
+        """
+        self._console = console or Console()
 
     def print_chart(self, file_path: str, max_depth: int) -> None:
         """
@@ -23,7 +36,7 @@ class DepthChartReporter:
         """
         chart = self._generate_bar(max_depth)
         safe_file_path = sanitize_console_text(file_path)
-        print(f"{safe_file_path} | Max Depth: {max_depth} | {chart}")
+        self._console.print(f"{safe_file_path} | Max Depth: {max_depth} | {chart}")
 
     def _generate_bar(self, depth: int) -> str:
         """

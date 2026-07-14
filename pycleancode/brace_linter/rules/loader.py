@@ -7,6 +7,7 @@ Loads and instantiates linter rules dynamically based on configuration.
 from typing import List, Dict, Type, Any
 from pycleancode.brace_linter.rules.rule_base import RuleBase
 from pycleancode.brace_linter.rules.registry import RuleRegistry
+from pycleancode.brace_linter.rules.violation_model import DEFAULT_SEVERITY
 
 
 class RuleLoader:
@@ -23,6 +24,14 @@ class RuleLoader:
         """
         self.config = config
         self.registry = RuleRegistry()
+        self._severities: Dict[str, str] = {}
+
+    @property
+    def severities(self) -> Dict[str, str]:
+        """
+        Severity per enabled rule name, populated by load_rules().
+        """
+        return dict(self._severities)
 
     def load_rules(self) -> List[RuleBase]:
         """
@@ -42,6 +51,7 @@ class RuleLoader:
             if not rule_conf.get("enabled", False):
                 continue
 
+            self._severities[rule_name] = rule_conf.get("severity", DEFAULT_SEVERITY)
             rule_instance = self._instantiate_rule(rule_cls, rule_conf)
             loaded_rules.append(rule_instance)
 
@@ -69,7 +79,9 @@ class RuleLoader:
             RuleBase: The instantiated rule object.
         """
         rule_params = {
-            key: value for key, value in rule_conf.items() if key != "enabled"
+            key: value
+            for key, value in rule_conf.items()
+            if key not in ("enabled", "severity")
         }
 
         try:

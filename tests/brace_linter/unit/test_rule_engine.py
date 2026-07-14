@@ -4,6 +4,7 @@ from typing import List
 
 from pycleancode.brace_linter.rules.max_depth_rule import MaxDepthRule
 from pycleancode.brace_linter.rules.nested_function_rule import NestedFunctionRule
+from pycleancode.brace_linter.rules.rule_base import RuleBase
 from pycleancode.brace_linter.rules.rule_engine import RuleEngine
 from pycleancode.brace_linter.vbtree.vbt_builder import VBTBuilder
 from pycleancode.brace_linter.vbtree.vbt_model import VBTNode
@@ -45,3 +46,32 @@ def my_func():
     assert any("Depth 4 exceeds max 3" in msg for msg in violation_messages)
     assert any("Depth 5 exceeds max 3" in msg for msg in violation_messages)
     assert any("Nested functions depth" in msg for msg in violation_messages)
+
+
+class _StubRule(RuleBase):
+    def __init__(self, rule_name: str) -> None:
+        self._rule_name = rule_name
+
+    @property
+    def name(self) -> str:
+        return self._rule_name
+
+    def run(self, vbt_root: VBTNode, file_path: str) -> List[RuleViolation]:
+        return [RuleViolation(file_path=file_path, line_number=1, message="boom")]
+
+
+def _root() -> VBTNode:
+    return VBTNode(node_type="ROOT", start_line=0, end_line=0)
+
+
+def test_engine_stamps_rule_name_and_mapped_severity() -> None:
+    engine = RuleEngine([_StubRule("max_depth")], severities={"max_depth": "warning"})
+    violations = engine.run(_root(), "a.py")
+    assert violations[0].rule_name == "max_depth"
+    assert violations[0].severity == "warning"
+
+
+def test_engine_defaults_severity_to_error_when_unmapped() -> None:
+    engine = RuleEngine([_StubRule("max_depth")])
+    violations = engine.run(_root(), "a.py")
+    assert violations[0].severity == "error"
