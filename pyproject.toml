@@ -39,7 +39,7 @@ pytest-cov = { version = "^6.2.1", python = ">=3.10,<3.13" }
 pytest-mypy-plugins = { version = "^3.2.0", python = ">=3.10,<3.13" }
 typeguard = "^4.4.3"
 tox = { version = "4.26.0", python = ">=3.10,<3.13" }
-virtualenv = { version = ">=20.36.2,<21.0.0", python = ">=3.10,<3.13" }
+virtualenv = { version = ">=20.36.2,<22.0.0", python = ">=3.10,<3.13" }
 pip-audit = { version = ">=2.9.0,<3.0.0", python = ">=3.10,<3.13" }
 bandit = { version = ">=1.8.6,<2.0.0", python = ">=3.10,<3.13" }
 
